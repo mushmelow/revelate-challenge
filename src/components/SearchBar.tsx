@@ -1,12 +1,16 @@
-import React, { useState, useEffect, KeyboardEvent } from "react";
+import React, { useState, useEffect } from "react";
 import { SearchBarStyle } from "./Components.style";
 
-export const SearchBar = ({ handleSearch }: any) => {
+interface SearchBar {
+  handleSearch: (title: string) => void;
+}
+
+export const SearchBar = ({ handleSearch }: SearchBar) => {
   const [searchTerm, setSearchTerm] = useState("");
 
-  const handleKeyDown = (event: any) => {
+  const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
     if (event.key === "Enter") {
-      setSearchTerm(event.target.value);
+      setSearchTerm(event.currentTarget.value);
     }
   };
 
