@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
-import { SearchBarStyle } from "./Components.style";
+import { Bar, Input } from "./Components.style";
 
-interface SearchBar {
+interface ISearchBar {
   handleSearch: (title: string) => void;
 }
 
-export const SearchBar = ({ handleSearch }: SearchBar) => {
+export const SearchBar = ({ handleSearch }: ISearchBar) => {
   const [searchTerm, setSearchTerm] = useState("");
 
   const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
@@ -19,8 +19,8 @@ export const SearchBar = ({ handleSearch }: SearchBar) => {
   }, [searchTerm]);
 
   return (
-    <SearchBarStyle>
-      <input type="text" placeholder="movie Title" onKeyDown={handleKeyDown} />
-    </SearchBarStyle>
+    <Bar>
+      <Input type="text" placeholder="movie Title" onKeyDown={handleKeyDown} />
+    </Bar>
   );
 };

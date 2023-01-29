@@ -1,6 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-interface Movie {
+import { ListContainer, MovieImg } from "./Components.style";
+interface IMovie {
   Title: string;
   Year: string;
   imdbID: string;
@@ -22,18 +23,19 @@ export const MoviesList = ({ listOfMovies }: MoviesList) => {
     }
   };
   return (
-    <ul style={{ listStyle: "none" }}>
-      {listOfMovies?.map((movie: Movie) => (
+    <ListContainer>
+      {listOfMovies?.map((movie: IMovie) => (
         <li key={movie.imdbID}>
-          <p>Title: {movie.Title} </p>
-          <img
+          <h1>Title: {movie.Title} </h1>
+          <h2>Year of release: {movie.Year} </h2>
+
+          <MovieImg
             alt={movie.Title}
             onClick={() => navigate(`/Movie/${movie.imdbID}`)}
             src={getPosters(movie.Poster, movie.Title)}
           />
-          <p> {movie.Year} </p>
         </li>
       ))}
-    </ul>
+    </ListContainer>
   );
 };

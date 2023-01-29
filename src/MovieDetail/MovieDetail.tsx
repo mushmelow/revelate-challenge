@@ -1,21 +1,22 @@
 import React, { useState, useEffect } from "react";
 import { GetById } from "../api/GetById";
 import { useParams } from "react-router-dom";
+import { Box, ListContainer } from "../components/Components.style";
 
-interface Movie {
+interface IMovie {
   Plot: string;
   Actors: string;
   Ratings: [];
 }
 
-interface Rating {
+interface IRating {
   Source: string;
   Value: string;
 }
 
 export const MovieDetail = () => {
   let { id } = useParams();
-  const [movie, setMovie] = useState<Movie>();
+  const [movie, setMovie] = useState<IMovie>();
 
   useEffect(() => {
     handleSearch(id);
@@ -28,18 +29,27 @@ export const MovieDetail = () => {
       setMovie(result);
     }
   };
-  console.log(movie?.Ratings);
+
   return (
     <>
-      <p>Plot: {movie?.Plot}</p>
-      <p>Actors: {movie?.Actors} </p>
-      <ul style={{ listStyle: "none" }}>
-        {movie?.Ratings?.map((rating: Rating) => (
-          <li key={rating.Source}>
-            {rating.Source}: {rating.Value}
-          </li>
-        ))}
-      </ul>
+      <Box>
+        <h1>Plot</h1>
+        <p>{movie?.Plot} </p>
+      </Box>
+      <Box>
+        <h1>Actors </h1>
+        <p>{movie?.Actors} </p>
+      </Box>
+      <Box>
+        <h1>Ratings</h1>
+        <ListContainer>
+          {movie?.Ratings?.map((rating: IRating) => (
+            <li key={rating.Source}>
+              {rating.Source}: {rating.Value}
+            </li>
+          ))}
+        </ListContainer>
+      </Box>
     </>
   );
 };
