@@ -1,24 +1,22 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, KeyboardEvent } from "react";
+import { SearchBarStyle } from "./Components.style";
 
 export const SearchBar = ({ handleSearch }: any) => {
   const [searchTerm, setSearchTerm] = useState("");
 
-  const handleOnchange = (search: string) => {
-    setSearchTerm(search);
+  const handleKeyDown = (event: any) => {
+    if (event.key === "Enter") {
+      setSearchTerm(event.target.value);
+    }
   };
 
   useEffect(() => {
-    const debounce = setTimeout(() => {
-      handleSearch(searchTerm);
-    }, 2000);
-    return () => clearTimeout(debounce);
+    handleSearch(searchTerm);
   }, [searchTerm]);
 
   return (
-    <input
-      type="text"
-      placeholder="movie Title"
-      onChange={(e) => handleOnchange(e.target.value)}
-    />
+    <SearchBarStyle>
+      <input type="text" placeholder="movie Title" onKeyDown={handleKeyDown} />
+    </SearchBarStyle>
   );
 };

@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react";
-import { Navigate, useNavigate } from "react-router-dom";
+import React from "react";
+import { useNavigate } from "react-router-dom";
 interface Movie {
   Title: string;
   Year: string;
@@ -8,7 +8,11 @@ interface Movie {
   Poster: string;
 }
 
-export const MoviesList = ({ listOfMovies }: any) => {
+interface MoviesList {
+  listOfMovies: [];
+}
+
+export const MoviesList = ({ listOfMovies }: MoviesList) => {
   const navigate = useNavigate();
   const getPosters = (posterLink: string, movieTitle: string) => {
     if (posterLink === "N/A") {
@@ -18,17 +22,18 @@ export const MoviesList = ({ listOfMovies }: any) => {
     }
   };
   return (
-    <>
+    <ul style={{ listStyle: "none" }}>
       {listOfMovies?.map((movie: Movie) => (
-        <>
-          <p>{movie.Title} </p>
+        <li key={movie.imdbID}>
+          <p>Title: {movie.Title} </p>
           <img
-            onClick={() => navigate("/Movie")}
+            alt={movie.Title}
+            onClick={() => navigate(`/Movie/${movie.imdbID}`)}
             src={getPosters(movie.Poster, movie.Title)}
           />
           <p> {movie.Year} </p>
-        </>
+        </li>
       ))}
-    </>
+    </ul>
   );
 };
