@@ -49,5 +49,5 @@ export const MovieContainer = styled.li`
   }
   margin: 50px 200px 50px 200px;
   padding: 20px;
-  border: 2px solid;
+  border: 2px solid #dcdcdc;
 `;
