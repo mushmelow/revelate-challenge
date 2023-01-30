@@ -19,6 +19,9 @@ export const Bar = styled.div`
 `;
 
 export const MovieImg = styled.img`
+  object-fit: cover;
+  width: 200px;
+  height: 300px;
   &:hover {
     box-shadow: 0px 0px 10px 10px #000000;
     cursor: pointer;
@@ -32,7 +35,19 @@ export const Box = styled.div`
   text-align: center;
 `;
 export const ListContainer = styled.ul`
+  display: flex;
   list-style: none;
   margin: 0;
   padding: 0;
+  flex: 1;
+  flex-direction: column;
+`;
+
+export const MovieContainer = styled.li`
+  @media only screen and (max-width: 800px) {
+    margin: 20px;
+  }
+  margin: 50px 200px 50px 200px;
+  padding: 20px;
+  border: 2px solid;
 `;
